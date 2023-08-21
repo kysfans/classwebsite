@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>[班級網頁] - 用户注册</title>
+  <script>
+    function validateForm() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirmPassword").value;
+      var email = document.getElementById("email").value;
+
+      var usernameError = document.getElementById("usernameError");
+      var passwordError = document.getElementById("passwordError");
+      var confirmPasswordError = document.getElementById("confirmPasswordError");
+      var emailError = document.getElementById("emailError");
+
+      // 用户名长度限制
+      if (username.length < 4 || username.length > 20) {
+        usernameError.textContent = "用户名长度必须在4到20个字符之间";
+        return false;
+      } else {
+        usernameError.textContent = "";
+      }
+
+      // 密码复杂度要求（此处仅示例）
+      if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)) {
+        passwordError.textContent = "密码必须包含至少一个大写字母、一个小写字母、一个数字和一个特殊字符，且长度至少为8个字符";
+        return false;
+      } else {
+        passwordError.textContent = "";
+      }
+
+      // 确认密码是否匹配
+      if (password !== confirmPassword) {
+        confirmPasswordError.textContent = "密码不一致";
+        return false;
+      } else {
+        confirmPasswordError.textContent = "";
+      }
+
+      // 邮箱格式验证
+      if (!validateEmail(email)) {
+        emailError.textContent = "请输入有效的邮箱地址";
+        return false;
+      } else {
+        emailError.textContent = "";
+      }
+
+      return true; // 允许表单提交
+    }
+
+    function validateEmail(email) {
+      var pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      return pattern.test(email);
+    }
+  </script>
+</head>
+<body>
+<header>
+  <h1 th:text="歡迎來到[班級網頁]">歡迎來到[班級網頁]</h1>
+</header>
+<nav>
+  <ul>
+    <li><a href="/">首頁</a></li>
+    <li><a href="/announcements">公告</a></li>
+    <li><a href="/calender">行事歷</a></li>
+    <li><a href="/class-info">班級資訊</a></li>
+    <li><a href="/student-info">學生資訊</a></li>
+    <li><a href="/course-schedule">功課表</a></li>
+    <li><a href="/contact-book">聯絡簿</a></li>
+    <li><a href="/grade-record">成績紀錄</a></li>
+    <li><a href="/class-photos">班級照片</a></li>
+    <li><a href="/resources">教材和資源</a></li>
+    <li><a href="/register">用户注册</a></li>
+    <li><a href="/login">用户登錄</a></li>
+  </ul>
+</nav>
+<main class="centered-container">
+  <div class="form-container">
+    <h2>用戶注冊</h2>
+    <form action="/register" method="POST" onsubmit="return validateForm()">
+      <!-- 添加 CSRF 令牌 -->
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+      <label for="username">帳戶:</label>
+      <input type="text" id="username" name="username" required>
+      <span id="usernameError" style="color: red;"></span>
+
+      <label for="password">密碼:</label>
+      <input type="password" id="password" name="password" required>
+      <span id="passwordError" style="color: red;"></span>
+
+      <label for="confirmPassword">確認密碼:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required>
+      <span id="confirmPasswordError" style="color: red;"></span>
+
+      <label for="email">郵箱:</label>
+      <input type="email" id="email" name="email" required>
+      <span id="emailError" style="color: red;"></span>
+
+      <input type="submit" value="注冊">
+    </form>
+  </div>
+  <div th:if="${successMessage}" class="success-message">
+    <p th:text="${successMessage}"></p>
+    <a th:href="@{/login}">前往登录页面</a>
+  </div>
+
+  <div th:if="${errorMessage}" class="error-message">
+    <p th:text="${errorMessage}"></p>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2023 [班級網頁]</p>
+</footer>
+</body>
+</html>

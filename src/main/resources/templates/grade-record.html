@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>[班級網頁] - 成績紀錄</title>
+</head>
+<body>
+<header>
+  <h1 th:text="歡迎來到[班級網頁]">歡迎來到[班級網頁]</h1>
+</header>
+<nav>
+  <ul>
+    <li><a href="/">首頁</a></li>
+    <li><a href="/announcements">公告</a></li>
+    <li><a href="/calender">行事歷</a></li>
+    <li><a href="/class-info">班級資訊</a></li>
+    <li><a href="/student-info">學生資訊</a></li>
+    <li><a href="/course-schedule">功課表</a></li>
+    <li><a href="/contact-book">聯絡簿</a></li>
+    <li><a href="/grade-record">成績紀錄</a></li>
+    <li><a href="/class-photos">班級照片</a></li>
+    <li><a href="/resources">教材和資源</a></li>
+    <li><a href="/register">用户注册</a></li>
+    <li><a href="/login">用户登錄</a></li>
+    <!-- 其他導航項目 -->
+  </ul>
+</nav>
+<main>
+  <section id="grade-record">
+    <h2>成績紀錄</h2>
+    <table>
+      <tr>
+        <th>學生姓名</th>
+        <th>科目</th>
+        <th>分數</th>
+      </tr>
+      <tr th:each="record : ${gradeRecords}">
+        <td th:text="${record.studentName}"></td>
+        <td th:text="${record.subject}"></td>
+        <td th:text="${record.score}"></td>
+      </tr>
+    </table>
+  </section>
+</main>
+<footer>
+  <p>&copy; 2023 班級網頁</p>
+</footer>
+</body>
+</html>

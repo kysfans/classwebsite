@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="calendar.js"></script>
+    <title>[班級網頁] - 行事歷</title>
+</head>
+<body>
+<header>
+    <h1 th:text="歡迎來到[班級網頁]">歡迎來到[班級網頁]</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="/">首頁</a></li>
+        <li><a href="/announcements">公告</a></li>
+        <li><a href="/calender">行事歷</a></li>
+        <li><a href="/class-info">班級資訊</a></li>
+        <li><a href="/student-info">學生資訊</a></li>
+        <li><a href="/course-schedule">功課表</a></li>
+        <li><a href="/contact-book">聯絡簿</a></li>
+        <li><a href="/grade-record">成績紀錄</a></li>
+        <li><a href="/class-photos">班級照片</a></li>
+        <li><a href="/resources">教材和資源</a></li>
+        <li><a href="/register">用户注册</a></li>
+        <li><a href="/login">用户登錄</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>行事歷</h2>
+    <div class = "centered-container">
+        <div class="calendar-header">
+            <button class="prev-button">&lt;</button>
+            <h2 class="calendar-year">2023</h2>
+            <button class="next-button">&gt;</button>
+        </div>
+    </div>
+    <div class = "centered-container">
+        <div class="calendar-header">
+            <button class="prev-button">&lt;</button>
+            <h2 class="calendar-mouth">August</h2>
+            <button class="next-button">&gt;</button>
+        </div>
+    </div>
+    <div class="month">
+        <div class="day">Sun</div>
+        <div class="day">Mon</div>
+        <div class="day">Tue</div>
+        <div class="day">Wed</div>
+        <div class="day">Thu</div>
+        <div class="day">Fri</div>
+        <div class="day">Sat</div>
+    </div>
+    <section id="calender">
+        <div th:each="calender : ${calenders}" class="day">
+            <p>日期: <span th:text="${calender.date.dayOfMonth}"></span></p>
+            <p>標題: <span th:text="${calender.title}"></span></p>
+            <p>描述: <span th:text="${calender.description}"></span></p>
+        </div>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2023 班級網頁</p>
+</footer>
+</body>
+</html>

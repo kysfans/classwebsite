@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>[班級網頁] - 班級資訊</title>
+</head>
+<body>
+<header>
+  <h1 th:text="歡迎來到[班級網頁]">歡迎來到[班級網頁]</h1>
+</header>
+<nav>
+  <ul>
+    <li><a href="/">首頁</a></li>
+    <li><a href="/announcements">公告</a></li>
+    <li><a href="/calender">行事歷</a></li>
+    <li><a href="/class-info">班級資訊</a></li>
+    <li><a href="/student-info">學生資訊</a></li>
+    <li><a href="/course-schedule">功課表</a></li>
+    <li><a href="/contact-book">聯絡簿</a></li>
+    <li><a href="/grade-record">成績紀錄</a></li>
+    <li><a href="/class-photos">班級照片</a></li>
+    <li><a href="/resources">教材和資源</a></li>
+    <li><a href="/register">用户注册</a></li>
+    <li><a href="/login">用户登錄</a></li>
+    <!-- 其他導航項目 -->
+  </ul>
+</nav>
+<main>
+  <section id="class-info">
+    <h2>班級資訊</h2>
+    <p>班級名稱：<span th:text="${classInfo.className}">班級名稱</span></p>
+    <p>班級編號：<span th:text="${classInfo.classNumber}">班級編號</span></p>
+    <p>教師姓名：<span th:text="${classInfo.teacherName}">教師姓名</span></p>
+  </section>
+</main>
+<footer>
+  <p>&copy; 2023 班級網頁</p>
+</footer>
+</body>
+</html>

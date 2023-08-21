@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>[班級網頁]</title>
+</head>
+<body>
+<header>
+    <h1 th:text="歡迎來到[班級網頁]">歡迎來到[班級網頁]</h1>
+</header>
+<nav>
+    <ul>
+        <!-- 導航項目 -->
+        <li><a href="/">首頁</a></li>
+        <li><a href="/announcements">公告</a></li>
+        <li><a href="/calender">行事歷</a></li>
+        <li><a href="/class-info">班級資訊</a></li>
+        <li><a href="/student-info">學生資訊</a></li>
+        <li><a href="/course-schedule">功課表</a></li>
+        <li><a href="/contact-book">聯絡簿</a></li>
+        <li><a href="/grade-record">成績紀錄</a></li>
+        <li><a href="/class-photos">班級照片</a></li>
+        <li><a href="/resources">教材和資源</a></li>
+        <li><a href="/register">用户注册</a></li>
+        <li><a href="/login">用户登錄</a></li>
+    </ul>
+</nav>
+<main>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <!-- 主要內容區域 -->
+    <section id="home">
+        <!-- 首頁內容 -->
+    </section>
+    <section id="announcements">
+        <!-- 公告內容 -->
+    </section>
+    <section id="class-info">
+        <!-- 班級資訊內容 -->
+    </section>
+    <!-- 其他區塊 -->
+</main>
+<footer>
+    <p>&copy; 2023 [班級網頁]</p>
+</footer>
+</body>
+</html>
